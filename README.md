@@ -1,146 +1,265 @@
-# SENTINEL CCTV Surveillance System
+# VisionGuard AI - Automated Intrusion Detection System
 
-A real-time AI-powered CCTV surveillance system with object detection, zone monitoring, and breach alerts.
+A premium industrial-grade AI-powered CCTV surveillance system with real-time object detection, multi-object tracking, zone monitoring, and breach alerts.
 
-## Features
+## 🚀 Quick Start for Team Members
 
-- **Real-time Object Detection**: Uses YOLOv8 with ByteTrack for accurate tracking
-- **Zone Monitoring**: Define restricted zones and get instant breach alerts
-- **Live Dashboard**: React-based dashboard with real-time telemetry via WebSocket
-- **Event Logging**: MongoDB integration for storing breach events
-- **Mobile Camera Support**: Connect to IP cameras (e.g., IP Webcam app)
-
-## Architecture
-
-- **Backend**: FastAPI with YOLOv8, OpenCV, MongoDB
-- **Frontend**: React + Vite with TailwindCSS
-- **AI Model**: YOLOv8n (Nano) for efficient object detection
-- **Tracking**: ByteTrack algorithm for object tracking
-
-## Prerequisites
-
-- Python 3.8+
+### Prerequisites
+- Python 3.8+ 
 - Node.js 16+
 - MongoDB (optional - for event logging)
-- A camera source (webcam, IP camera, or mobile camera)
+- A camera source (webcam, IP camera, or video file)
 
-## Setup Instructions
+### One-Command Setup
 
-### 1. Backend Setup
-
+**Windows:**
 ```bash
-# Navigate to project root
-cd c:\Users\dines\CCTV
+# Clone the repository
+git clone https://github.com/dineshpawar960495-bit/VisionGuard-AI-Automated-Intrusion-Detection-System.git
+cd VisionGuard-AI-Automated-Intrusion-Detection-System
 
-# Create and activate virtual environment
+# Setup backend (creates virtual environment and installs dependencies)
 python -m venv cctv_env
 cctv_env\Scripts\activate
-
-# Install Python dependencies
 pip install -r requirements.txt
-```
 
-### 2. Camera Configuration
-
-Edit `server.py` line 59 to set your camera source:
-
-```python
-# For webcam (default)
-cam = CameraStream(0)
-
-# For IP camera (e.g., IP Webcam app)
-cam = CameraStream("http://YOUR_IP:8080/video")
-
-# For video file
-cam = CameraStream("path/to/video.mp4")
-```
-
-### 3. MongoDB Setup (Optional)
-
-If you want event logging, install MongoDB and ensure it's running on localhost:27017. The system will work without MongoDB but won't persist breach logs.
-
-### 4. Frontend Setup
-
-```bash
-# Navigate to frontend directory
+# Setup frontend
 cd sentinel-dashboard
-
-# Install dependencies (already done)
 npm install
-
-# Start development server
-npm run dev
 ```
 
-### 5. Running the Application
+**Linux/Mac:**
+```bash
+# Clone the repository
+git clone https://github.com/dineshpawar960495-bit/VisionGuard-AI-Automated-Intrusion-Detection-System.git
+cd VisionGuard-AI-Automated-Intrusion-Detection-System
+
+# Setup backend
+python3 -m venv cctv_env
+source cctv_env/bin/activate
+pip install -r requirements.txt
+
+# Setup frontend
+cd sentinel-dashboard
+npm install
+```
+
+### Running the Application
 
 **Terminal 1 - Backend Server:**
 ```bash
-cd c:\Users\dines\CCTV
-cctv_env\Scripts\activate
+# From project root
+cctv_env\Scripts\activate  # Windows
+# or source cctv_env/bin/activate  # Linux/Mac
 python server.py
 ```
 
 **Terminal 2 - Frontend Server:**
 ```bash
-cd c:\Users\dines\CCTV\sentinel-dashboard
+cd sentinel-dashboard
 npm run dev
 ```
 
-### 6. Access the Dashboard
+**Access the Dashboard:** Open `http://localhost:5173` in your browser
 
-Open your browser and navigate to the frontend URL (usually `http://localhost:5173`)
+## ✨ Features
 
-## Usage
+### Core Capabilities
+- **Real-time Multi-Object Detection**: YOLOv8 with ByteTrack for smooth tracking of multiple objects
+- **Interactive Zone Editor**: Drag-and-drop polygon configuration for restricted areas
+- **Premium Industrial UI**: Gradient effects, glass morphism, and smooth animations
+- **Voice Alarm System**: Web Audio API for breach alerts
+- **System Health Monitoring**: CPU, memory, network indicators in real-time
+- **Camera Management**: Support for multiple camera sources (webcam, IP, video files)
+- **Professional Status Dashboard**: Comprehensive breach metrics and system status
+- **MongoDB Integration**: Async event logging for breach history
+- **WebSocket Telemetry**: Real-time updates without page refresh
+- **Color-Coded Tracking**: Visual trails for object movement with class-specific colors
 
-1. **View Live Feed**: The main dashboard shows the live camera feed with object detection overlays
-2. **Zone Configuration**: Use the Zone Geometry Config panel to adjust restricted zone coordinates
-3. **Monitor Alerts**: Breach alerts appear automatically when objects enter restricted zones
-4. **View History**: The Event Audit Log shows historical breach events
+### Detection Features
+- **Multi-Object Support**: Track up to 100 objects simultaneously
+- **Smooth Tracking**: Optimized ByteTrack parameters for stable ID persistence
+- **Confidence Display**: Real-time detection confidence percentages
+- **Class Detection**: Support for all COCO classes (person, car, truck, bicycle, etc.)
+- **Zone Breach Detection**: Polygon containment with automatic coordinate scaling
 
-## Configuration Files
+## 🏗️ Architecture
 
-- `server.py`: Main FastAPI server with detection logic
-- `bytetrack.yaml`: ByteTrack tracker configuration
-- `requirements.txt`: Python dependencies
-- `sentinel-dashboard/src/App.jsx`: Main React application
+### Backend (FastAPI)
+- **AI Model**: YOLOv8n (Nano) for efficient object detection
+- **Tracking**: ByteTrack algorithm with optimized parameters
+- **Database**: MongoDB async integration for event logging
+- **Streaming**: MJPEG video feed with real-time overlays
+- **WebSocket**: Real-time telemetry for live updates
 
-## API Endpoints
+### Frontend (React + Vite)
+- **UI Framework**: React with modern hooks
+- **Styling**: TailwindCSS with premium design system
+- **Real-time**: WebSocket integration for live updates
+- **Components**: Modular architecture with reusable components
 
-- `GET /video_feed`: MJPEG video stream
-- `GET /ws`: WebSocket for real-time telemetry
-- `GET /logs`: Fetch breach event logs
-- `GET /settings`: Get current zone configuration
-- `POST /settings`: Update zone configuration
+## 📁 Project Structure
 
-## Troubleshooting
+```
+VisionGuard-AI-Automated-Intrusion-Detection-System/
+├── server.py                 # Main FastAPI server
+├── bytetrack.yaml           # ByteTrack configuration
+├── requirements.txt         # Python dependencies
+├── sentinel-dashboard/      # Frontend application
+│   ├── src/
+│   │   ├── App.jsx         # Main React component
+│   │   ├── components/     # React components
+│   │   │   ├── ZoneEditor.jsx
+│   │   │   ├── DetectionCard.jsx
+│   │   │   ├── AlertBox.jsx
+│   │   │   ├── Toast.jsx
+│   │   │   ├── CameraManager.jsx
+│   │   │   ├── SystemStatus.jsx
+│   │   │   └── ...
+│   │   └── index.css       # Global styles
+│   ├── package.json        # Node dependencies
+│   └── vite.config.js      # Vite configuration
+└── README.md              # This file
+```
 
-**Camera not connecting:**
-- Verify your camera URL is correct
-- Check firewall settings for IP cameras
-- Ensure camera app is streaming
+## 🔧 Configuration
 
-**MongoDB connection errors:**
-- The system will work without MongoDB (logs won't persist)
-- Install MongoDB from https://www.mongodb.com/try/download/community
+### Camera Setup
 
-**Frontend not connecting to backend:**
-- Ensure backend server is running on port 8000
-- Check CORS settings in server.py (currently allows all origins)
+Edit `server.py` line 81 to configure your camera source:
 
-**YOLO model not found:**
-- The model will auto-download on first run
-- Ensure you have internet connection for first run
+```python
+# Webcam (default)
+cam = CameraStream(0)
 
-## Mobile Camera Setup
+# IP Camera
+cam = CameraStream("http://YOUR_IP:8080/video")
+
+# Video file
+cam = CameraStream("path/to/video.mp4")
+```
+
+### Zone Configuration
+
+- Use the interactive Zone Editor in the dashboard
+- Drag control points to define your restricted area
+- Click "SAVE ZONE" to persist configuration
+- Coordinates automatically scale to video resolution
+
+### ByteTrack Parameters
+
+Edit `bytetrack.yaml` to adjust tracking behavior:
+- `track_thresh`: Detection threshold (default: 0.25)
+- `track_buffer`: Tracking buffer size (default: 60)
+- `match_thresh`: Matching threshold for stable IDs (default: 0.8)
+
+## 🌐 API Endpoints
+
+- `GET /video_feed` - MJPEG video stream with detection overlays
+- `GET /ws` - WebSocket for real-time telemetry
+- `GET /logs` - Fetch breach event logs
+- `GET /settings` - Get current zone configuration
+- `POST /settings` - Update zone configuration
+- `GET /alerts` - Get recent security alerts
+- `GET /system-status` - Get overall system health status
+
+## 🎯 Usage Guide
+
+1. **Start Servers**: Run backend and frontend as shown above
+2. **Access Dashboard**: Open `http://localhost:5173`
+3. **Configure Zone**: Use Zone Editor to define restricted areas
+4. **Monitor Live Feed**: View real-time detection with tracking
+5. **Check Alerts**: Automatic breach notifications with voice alerts
+6. **View History**: Access historical breach events in the log
+
+## 📱 Mobile Camera Setup
 
 To use your phone as a camera:
 
-1. Install "IP Webcam" (Android) or "Webcam Monitor" (iOS)
-2. Start the server on your phone
-3. Note the IP address shown
-4. Update `server.py` with your phone's IP: `http://YOUR_PHONE_IP:8080/video`
+1. **Android**: Install "IP Webcam" app
+2. **iOS**: Install "Webcam Monitor" app
+3. Start the server on your phone
+4. Note the IP address shown
+5. Update `server.py`: `cam = CameraStream("http://YOUR_PHONE_IP:8080/video")`
 
-## License
+## 🔍 Troubleshooting
 
-MIT License
+### Camera Issues
+- **Not connecting**: Verify camera URL and check firewall settings
+- **Black screen**: Ensure camera is not in use by another application
+- **IP camera**: Test URL in browser first to confirm stream is accessible
+
+### Backend Issues
+- **Port 8000 in use**: Stop conflicting process or change port in `server.py`
+- **MongoDB errors**: System works without MongoDB (logs won't persist)
+- **YOLO model not found**: Auto-downloads on first run (requires internet)
+
+### Frontend Issues
+- **Blank page**: Check browser console for errors
+- **WebSocket connection failed**: Ensure backend is running on port 8000
+- **Not connecting to backend**: Verify CORS settings (currently allows all origins)
+
+### Performance Issues
+- **Slow detection**: Reduce `imgsz` parameter in `server.py` or use GPU
+- **High CPU usage**: Increase `conf` threshold to reduce detections
+- **Lagging video**: Reduce video quality in MJPEG encoding
+
+## 🛠️ Development
+
+### Adding New Features
+1. Backend: Add new endpoints in `server.py`
+2. Frontend: Create new components in `sentinel-dashboard/src/components/`
+3. Styling: Use TailwindCSS classes for consistency
+4. State Management: Use React hooks for local state
+
+### Testing
+- Backend: Test endpoints using `curl` or Postman
+- Frontend: Test components in isolation
+- Integration: Test full system with real camera feed
+
+## 📊 Performance Metrics
+
+- **Detection Speed**: ~15-30 FPS on CPU (varies with hardware)
+- **Tracking Accuracy**: Stable IDs with ByteTrack optimization
+- **Memory Usage**: ~2GB RAM for detection + tracking
+- **Network**: Minimal bandwidth for WebSocket telemetry
+
+## 🤝 Team Collaboration
+
+### Git Workflow
+```bash
+# Pull latest changes
+git pull origin main
+
+# Create feature branch
+git checkout -b feature/your-feature-name
+
+# Make changes and commit
+git add .
+git commit -m "Description of your changes"
+
+# Push and create PR
+git push origin feature/your-feature-name
+```
+
+### Code Style
+- **Python**: Follow PEP 8 guidelines
+- **JavaScript**: Use ESLint configuration provided
+- **Components**: Keep components small and focused
+- **Comments**: Document complex logic
+
+## 📝 License
+
+MIT License - Feel free to use for personal and commercial projects
+
+## 👥 Team Members
+
+- **Dinesh Pawar** - Project Lead
+- **Team Members** - Contributors
+
+## 📞 Support
+
+For issues or questions:
+- Create an issue on GitHub
+- Check existing issues for solutions
+- Review troubleshooting section above
