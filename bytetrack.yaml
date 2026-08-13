@@ -1,0 +1,14 @@
+# ByteTrack configuration for YOLOv8 - Optimized for multi-object tracking
+tracker_type: bytetrack
+track_thresh: 0.25        # Lower threshold for better detection of multiple objects
+track_buffer: 60          # Increased buffer for better tracking persistence
+match_thresh: 0.8         # High matching threshold for stable IDs
+fuse_score: true
+track_high_thresh: 0.6   # High confidence threshold for track initialization
+track_low_thresh: 0.1    # Low threshold for track continuation (smooth tracking)
+new_track_thresh: 0.7     # High threshold for new track creation (reduce ID switching)
+track_buffer: 60
+# Additional parameters for smooth multi-object tracking
+mot20: false              # Use standard tracking instead of MOT20 specific
+appearance_feature_dim: 256
+with_reid: false
